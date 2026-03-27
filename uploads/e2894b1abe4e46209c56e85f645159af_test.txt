@@ -1,1 +1,0 @@
-Skills: JavaScript React CSS HTML

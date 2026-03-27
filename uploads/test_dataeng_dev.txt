@@ -1,1 +1,0 @@
-Data Engineer. Skills: Python, SQL, Spark, AWS, Machine Learning
