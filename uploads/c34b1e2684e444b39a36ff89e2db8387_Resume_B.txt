@@ -1,0 +1,2 @@
+Jane Smith - Frontend Developer
+Skills: React, JavaScript, CSS, HTML

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Growth Platform</title>
+    <link rel="icon" href="data:,">
+    <!-- use relative paths so live-server and backend both resolve correctly -->
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h3 id="welcomeUser"></h3>
+   <div class="navbar">
+    <h1>🚀 AI Career Growth Platform</h1>
+    <span id="userNameDisplay"></span>
+    <button onclick="toggleDarkMode()" class="dark-btn">🌙</button>
+    <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+    <button onclick="logoutUser()" style="
+        padding:8px 15px;
+        background:#ff4d4d;
+        color:white;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;">
+        Logout
+    </button>
+</div>
+</div>
+    <div class="container">
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <h2>Upload Your Resume</h2>
+            <div id="uploadContainer">
+                <div class="file-input-wrapper">
+                    <input type="file" id="resumeFile" accept=".pdf,.docx,.txt" />
+                    <label for="resumeFile" id="fileLabel" class="file-label">
+    📁 Choose File (PDF, DOCX, or TXT)
+</label>
+                </div>
+                <button type="button" class="btn-primary" id="analyzeBtn" onclick="analyzeResume(event)">Analyze Resume</button>
+            </div>
+            <div id="message"></div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results"></div>
+    </div>
+
+    <footer>
+        <p>© 2026 AI Career Growth Platform | Real Resume Analysis | Career Intelligence</p>
+    </footer>
+<!-- ✅ LOAD CHART FIRST -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>

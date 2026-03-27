@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | AI Career Platform</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 380px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: #eee;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tabs button.active {
+    background: #667eea;
+    color: white;
+}
+
+.form {
+    padding: 30px;
+    display: none;
+}
+
+.form.active {
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="tabs">
+        <button id="loginTab" class="active" onclick="showForm('login')">Login</button>
+        <button id="signupTab" onclick="showForm('signup')">Sign Up</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginForm" class="form active">
+        <h2>Welcome Back 👋</h2>
+        <input id="loginEmail" type="email" placeholder="Email">
+        <input id="loginPassword" type="password" placeholder="Password">
+        <button class="btn" onclick="loginUser()">Login</button>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="signupForm" class="form">
+        <h2>Create Account 🚀</h2>
+        <input id="signupName" type="text" placeholder="Full Name">
+        <input id="signupEmail" type="email" placeholder="Email">
+        <input id="signupPassword" type="password" placeholder="Password">
+        <button class="btn" onclick="signupUser()">Sign Up</button>
+    </div>
+
+</div>
+
+<script>
+// SWITCH FORMS
+function showForm(type) {
+    document.getElementById("loginForm").classList.remove("active");
+    document.getElementById("signupForm").classList.remove("active");
+
+    document.getElementById("loginTab").classList.remove("active");
+    document.getElementById("signupTab").classList.remove("active");
+
+    if (type === "login") {
+        document.getElementById("loginForm").classList.add("active");
+        document.getElementById("loginTab").classList.add("active");
+    } else {
+        document.getElementById("signupForm").classList.add("active");
+        document.getElementById("signupTab").classList.add("active");
+    }
+}
+
+// LOGIN
+async function loginUser() {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+        localStorage.setItem("userName", data.name);
+        window.location.href = "/home";
+    } else {
+        alert(data.error || "Login failed");
+    }
+}
+
+// SIGNUP
+async function signupUser() {
+    const name = document.getElementById("signupName").value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+
+    const res = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+        alert("Signup successful! Now login.");
+        showForm('login');
+    } else {
+        alert(data.error || "Signup failed");
+    }
+}
+</script>
+
+</body>
+</html>

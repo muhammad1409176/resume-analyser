@@ -1,0 +1,31 @@
+DAVID LEE
+Email: [david.ml@example.com](mailto:david.ml@example.com)
+Phone: +91 95566 77889
+Location: Chennai, India
+
+PROFESSIONAL SUMMARY
+Machine learning enthusiast focused on building predictive models and intelligent systems using Python.
+
+EDUCATION
+B.Tech in Artificial Intelligence
+Tech Valley University (2020–2024)
+
+TECHNICAL SKILLS
+Python
+Machine Learning
+Deep Learning
+TensorFlow
+Scikit-learn
+Data Analysis
+
+PROJECTS
+Spam Email Classifier
+Developed a machine learning model to detect spam emails.
+
+Image Recognition System
+Built a CNN model using TensorFlow for image classification.
+
+STRENGTHS
+Model Development
+Data Processing
+Algorithm Design

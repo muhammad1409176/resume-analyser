@@ -1,0 +1,1 @@
+Frontend Specialist. Technologies: React, JavaScript, CSS, HTML, Webpack

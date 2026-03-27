@@ -1,0 +1,31 @@
+ALEX JOHNSON
+Email: [alex.frontend@example.com](mailto:alex.frontend@example.com)
+Phone: +91 90011 22334
+Location: Bangalore, India
+
+PROFESSIONAL SUMMARY
+Frontend developer passionate about building responsive and user-friendly web applications using modern JavaScript frameworks.
+
+EDUCATION
+B.Tech in Computer Science
+ABC Institute of Technology (2021–2025)
+
+TECHNICAL SKILLS
+HTML
+CSS
+JavaScript
+React
+Bootstrap
+Git
+
+PROJECTS
+Portfolio Website
+Built a personal portfolio using React and modern CSS design techniques.
+
+E-Commerce UI
+Developed the frontend interface for an online shopping website.
+
+STRENGTHS
+UI Design
+Responsive Development
+Problem Solving

@@ -1,0 +1,31 @@
+PRIYA VERMA
+Email: [priya.data@example.com](mailto:priya.data@example.com)
+Phone: +91 91122 33445
+Location: Hyderabad, India
+
+PROFESSIONAL SUMMARY
+Data analyst with strong analytical skills and experience in extracting insights from data using Python and visualization tools.
+
+EDUCATION
+B.Sc in Data Science
+LMN University (2021–2024)
+
+TECHNICAL SKILLS
+Python
+Pandas
+NumPy
+SQL
+Power BI
+Excel
+
+PROJECTS
+Sales Data Analysis
+Analyzed company sales data and built dashboards using Power BI.
+
+Customer Behavior Analysis
+Used Python and Pandas to analyze customer purchasing trends.
+
+STRENGTHS
+Data Visualization
+Statistical Analysis
+Critical Thinking

@@ -1,0 +1,36 @@
+MUHAMMAD MUSAIB
+Full Stack Python Developer
+Email: musaib@example.com | Phone: +92-xxx-xxxxxxx
+GitHub: github.com/username | LinkedIn: linkedin.com/in/username
+
+PROFESSIONAL SUMMARY
+Full Stack Python Developer with expertise in building scalable web applications using Python, FastAPI, React, and MongoDB. Focused on clean code, efficient solutions, and user-centered design.
+
+TECHNICAL SKILLS
+Backend: Python, FastAPI, Django, REST APIs, Uvicorn
+Frontend: React, JavaScript, HTML, CSS, Responsive Design
+Database: MongoDB, SQL, Database Design
+Tools & DevOps: Git, Docker, VS Code, Linux, JWT Authentication
+Other: CORS, API Integration, Deployment
+
+EXPERIENCE
+Full Stack Developer | Self-employed (2023 - Present)
+- Built portfolio website with React frontend and FastAPI backend
+- Implemented MongoDB for data persistence
+- Designed responsive UI and RESTful APIs
+- Deployed and maintained applications
+
+EDUCATION
+Bachelor of Science in Computer Science
+[University Name] | 2023
+
+PROJECTS
+1. Smart Course Hub
+   - Online learning platform for creating and managing courses
+   - Tech Stack: React, Python, FastAPI, MongoDB
+   - Features: Course management, progress tracking, recommendations
+
+2. Portfolio Website
+   - Personal portfolio showcasing projects and skills
+   - Tech Stack: React, FastAPI, MongoDB
+   - Features: Contact form, skills showcase, project display

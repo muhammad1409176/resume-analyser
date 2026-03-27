@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer - Diagnostic Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .panel { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .title { color: #667eea; font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #667eea; }
+        .test-title { font-weight: bold; color: #333; margin-bottom: 10px; }
+        button { padding: 10px 20px; margin: 5px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #764ba2; }
+        .log { background: #1e1e1e; color: #00ff00; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 12px; max-height: 400px; overflow-y: auto; margin: 10px 0; }
+        .log-line { margin: 2px 0; }
+        .success { color: #4caf50; }
+        .error { color: #f44336; }
+        .info { color: #2196f3; }
+        .warning { color: #ff9800; }
+        input[type="file"] { padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="panel">
+            <div class="title">🔧 Resume Analyzer - System Diagnostic</div>
+            
+            <div class="test-section">
+                <div class="test-title">1️⃣ System Check</div>
+                <button onclick="runSystemCheck()">Run System Check</button>
+            </div>
+            
+            <div class="test-section">
+                <div class="test-title">2️⃣ API Test</div>
+                <input type="file" id="testFile" accept=".pdf,.docx,.txt" />
+                <button onclick="runAPITest()">Test API with File</button>
+            </div>
+            
+            <div class="test-section">
+                <div class="test-title">📋 Console Output</div>
+                <div class="log" id="logOutput"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:5000/api';
+        const logOutput = document.getElementById('logOutput');
+
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const div = document.createElement('div');
+            div.className = 'log-line ' + type;
+            div.textContent = `[${timestamp}] ${message}`;
+            logOutput.appendChild(div);
+            logOutput.scrollTop = logOutput.scrollHeight;
+            console.log(`[${type}]`, message);
+        }
+
+        function clearLog() {
+            logOutput.innerHTML = '';
+        }
+
+        function runSystemCheck() {
+            clearLog();
+            addLog('=== SYSTEM CHECK START ===', 'info');
+            
+            // Check if functions exist
+            if (typeof window.analyzeResume === 'function') {
+                addLog('✓ analyzeResume function exists', 'success');
+            } else {
+                addLog('✗ analyzeResume function NOT FOUND', 'error');
+            }
+            
+            // Check if elements exist
+            const resumeFile = document.getElementById('resumeFile');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const resultsDiv = document.getElementById('results');
+            
+            if (resumeFile) {
+                addLog('✓ resumeFile input element found', 'success');
+            } else {
+                addLog('✗ resumeFile input NOT FOUND', 'error');
+            }
+            
+            if (analyzeBtn) {
+                addLog('✓ analyzeBtn button element found', 'success');
+            } else {
+                addLog('✗ analyzeBtn button NOT FOUND', 'error');
+            }
+            
+            if (resultsDiv) {
+                addLog('✓ results div element found', 'success');
+            } else {
+                addLog('✗ results div NOT FOUND', 'error');
+            }
+            
+            // Check API connectivity
+            addLog('Testing API connectivity...', 'info');
+            fetch(API_BASE + '/resume/analyze', { method: 'OPTIONS' })
+                .then(res => {
+                    addLog('✓ API is responding (Status: ' + res.status + ')', 'success');
+                })
+                .catch(err => {
+                    addLog('✗ API connection failed: ' + err.message, 'error');
+                });
+            
+            addLog('=== SYSTEM CHECK COMPLETE ===', 'info');
+        }
+
+        function runAPITest() {
+            clearLog();
+            addLog('=== API TEST START ===', 'info');
+            
+            const fileInput = document.getElementById('testFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                addLog('✗ No file selected', 'error');
+                return;
+            }
+            
+            addLog('File selected: ' + file.name + ' (' + (file.size / 1024).toFixed(2) + ' KB)', 'info');
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            addLog('Sending to: ' + API_BASE + '/resume/analyze', 'info');
+            
+            fetch(API_BASE + '/resume/analyze', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => {
+                addLog('Response status: ' + res.status, 'info');
+                return res.json();
+            })
+            .then(data => {
+                addLog('✓ Data received successfully', 'success');
+                
+                if (data.error) {
+                    addLog('✗ API Error: ' + data.error, 'error');
+                    return;
+                }
+                
+                // Check what data we got
+                const skillsFound = data.skills_found || [];
+                const missingSkills = data.missing_skills || [];
+                const analysis = data.analysis || {};
+                const roles = data.role_recommendations || [];
+                const jobs = data.job_matches || [];
+                
+                addLog('Skills found: ' + skillsFound.length, 'success');
+                if (skillsFound.length > 0) {
+                    addLog('  Sample: ' + skillsFound.slice(0, 3).join(', '), 'info');
+                }
+                
+                addLog('Missing skills: ' + missingSkills.length, 'info');
+                
+                addLog('Analysis sections: ' + Object.keys(analysis).length, 'success');
+                const analysisKeys = Object.keys(analysis);
+                analysisKeys.forEach(key => {
+                    if (Array.isArray(analysis[key])) {
+                        addLog('  ' + key + ': ' + analysis[key].length + ' items', 'info');
+                    }
+                });
+                
+                addLog('Role recommendations: ' + roles.length, 'success');
+                addLog('Job matches: ' + jobs.length, 'success');
+                
+                addLog('=== API TEST COMPLETE - ALL SYSTEMS GO ===', 'success');
+            })
+            .catch(err => {
+                addLog('✗ Fetch error: ' + err.message, 'error');
+                addLog('Stack: ' + err.stack.substring(0, 100), 'error');
+            });
+        }
+
+        // Auto-run system check on load
+        window.addEventListener('load', () => {
+            addLog('Page loaded - opening main app...', 'info');
+        });
+    </script>
+</body>
+</html>

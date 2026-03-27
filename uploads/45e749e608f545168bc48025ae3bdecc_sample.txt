@@ -1,0 +1,5 @@
+John Doe
+Email: john@example.com
+Skills: Python, JavaScript, SQL, Git
+Experience: Software Developer at XYZ Corp, 2 years
+Education: Bachelor's in Computer Science

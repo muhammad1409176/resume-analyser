@@ -1,0 +1,73 @@
+MUHAMMAD MUSAIB
+Email: [musaib.dev@example.com](mailto:musaib.dev@example.com)
+Phone: +91 98765 43210
+Location: Hyderabad, India
+
+---
+
+## PROFESSIONAL SUMMARY
+
+Motivated Computer Science student with strong interest in web development, data structures, and problem solving. Skilled in building responsive websites and learning modern technologies. Looking for opportunities to grow as a software developer.
+
+---
+
+## EDUCATION
+
+Bachelor of Technology in Computer Science Engineering
+XYZ Engineering College
+2023 – 2027
+
+---
+
+## TECHNICAL SKILLS
+
+Programming Languages:
+Java, Python, JavaScript
+
+Web Development:
+HTML, CSS, React, Node.js
+
+Database:
+MySQL, MongoDB.
+
+machine learning, data analysys,aws,kubernetes,tensorflow
+
+Tools:
+Git, Docker, Linux
+
+Concepts:
+Data Structures and Algorithms, OOP, REST APIs
+
+---
+
+## PROJECTS
+
+AI Resume Analyzer
+Developed a web application that analyzes resumes and provides skill recommendations using Python and JavaScript.
+
+College Website
+Built a responsive website for a college project using HTML, CSS, JavaScript, and React.
+
+---
+
+## CERTIFICATIONS
+
+Data Structures and Algorithms – Online Certification
+Web Development Bootcamp
+
+---
+
+## STRENGTHS
+
+Problem Solving
+Quick Learner
+Team Collaboration
+Adaptability
+
+---
+
+## LANGUAGES
+
+English
+Hindi
+Urdu

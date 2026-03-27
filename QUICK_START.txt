@@ -1,0 +1,119 @@
+# 🚀 QUICK START (5 Minutes)
+
+## Step 1: Install Dependencies (1 min)
+```bash
+pip install -r requirements.txt
+```
+
+## Step 2: Start Server (1 min)
+```bash
+python app.py
+```
+
+You should see:
+```
+ * Running on http://127.0.0.1:5000
+```
+
+## Step 3: Open in Browser (1 min)
+Go to: **http://localhost:5000**
+
+You should see the beautiful upload interface.
+
+## Step 4: Upload a Resume (1 min)
+1. Click "Select Resume" or drag-drop a file
+2. Supported formats: **PDF**, **DOCX**, **TXT**
+3. Click "Analyze Resume"
+
+## Step 5: View Results (1 min)
+You'll see:
+- ✅ Skills Found
+- ✅ Missing Important Skills
+- ✅ Your Strengths
+- ✅ Areas to Improve
+- ✅ Recommended Career Roles
+- ✅ Job Matching Scores
+
+---
+
+## Testing (Optional)
+
+Run tests to verify everything works:
+```bash
+python test_system.py
+```
+
+Should show: **4/4 tests passed** ✅
+
+---
+
+## Troubleshooting
+
+### Port Already in Use?
+Edit `app.py` line: `app.run(host='0.0.0.0', port=8000)`
+Then open: `http://localhost:8000`
+
+### No Skills Detected?
+Make sure your resume has text (not image-only PDF)
+Try with the sample.txt file first
+
+### Can't Reach Server?
+Make sure Python is still running and showing:
+```
+Press CTRL+C to quit
+```
+
+---
+
+## What's Happening?
+
+When you upload:
+1. **File extracted** → PDF/DOCX/TXT text extracted
+2. **Skills scanned** → 15 technical skills detected
+3. **Content analyzed** → Your experience, education, strengths identified
+4. **Roles matched** → Best career paths suggested
+5. **Jobs rated** → Compatibility with job postings calculated
+
+**All in < 1 second!** 🚀
+
+---
+
+## Easy Customization
+
+### Add More Skills to Detect
+Edit: `backend/skill_analyzer.py`
+```python
+SKILL_LIST = [
+    "python",  # existing
+    "your_new_skill"  # add here
+]
+```
+
+### Add More Job Roles
+Edit: `backend/skill_analyzer.py`
+```python
+ROLE_SKILLS = {
+    "Your Role": ["skill1", "skill2"],
+}
+```
+
+---
+
+## System Requirements
+- Python 3.8+
+- 500MB RAM
+- 100MB disk space
+- Any modern browser
+
+---
+
+## That's It! 🎉
+
+You now have a fully working AI Resume Analyzer!
+
+Questions? Check:
+- `README.md` - Full documentation
+- `INSTALLATION.md` - Detailed setup
+- `BUILD_COMPLETE.md` - What was built
+
+**Enjoy analyzing resumes!** 📄✨

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Analyzer - Simple Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        button { padding: 10px 20px; background: #667eea; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        input { padding: 10px; margin: 10px 0; width: 100%; }
+        pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Resume Analyzer - Debug Test</h1>
+    
+    <div class="section">
+        <h2>Step 1: Check Server Connection</h2>
+        <button onclick="testServer()">Test Server Connection</button>
+        <div id="serverResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Step 2: Check API Endpoint</h2>
+        <button onclick="testAPI()">Test API Endpoint</button>
+        <div id="apiResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Step 3: Upload Resume (Simple Test)</h2>
+        <input type="file" id="testFile" accept=".txt,.pdf,.docx" />
+        <button onclick="uploadFile()">Upload and Analyze</button>
+        <div id="uploadResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Response Data</h2>
+        <pre id="responseData">Waiting for response...</pre>
+    </div>
+    
+    <script>
+        async function testServer() {
+            const resultDiv = document.getElementById('serverResult');
+            try {
+                const r = await fetch('http://127.0.0.1:5000/');
+                resultDiv.innerHTML = `<span class="success">Server Status: ${r.status} OK</span>`;
+                console.log('Server test passed');
+            } catch(e) {
+                resultDiv.innerHTML = `<span class="error">Server Error: ${e.message}</span>`;
+                console.error('Server test failed:', e);
+            }
+        }
+        
+        async function testAPI() {
+            const resultDiv = document.getElementById('apiResult');
+            try {
+                const r = await fetch('http://127.0.0.1:5000/api/resume/analyze', {method: 'OPTIONS'});
+                resultDiv.innerHTML = `<span class="success">API Status: ${r.status} OK</span>`;
+                console.log('API test passed');
+            } catch(e) {
+                resultDiv.innerHTML = `<span class="error">API Error: ${e.message}</span>`;
+                console.error('API test failed:', e);
+            }
+        }
+        
+        async function uploadFile() {
+            const resultDiv = document.getElementById('uploadResult');
+            const responseDiv = document.getElementById('responseData');
+            const fileInput = document.getElementById('testFile');
+            
+            if (!fileInput.files[0]) {
+                resultDiv.innerHTML = '<span class="error">Please select a file</span>';
+                return;
+            }
+            
+            resultDiv.innerHTML = 'Uploading...';
+            
+            try {
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+                
+                console.log('Uploading file:', fileInput.files[0].name);
+                
+                const r = await fetch('http://127.0.0.1:5000/api/resume/analyze', {
+                    method: 'POST',
+                    body: formData,
+                    cache: 'no-store'
+                });
+                
+                console.log('Upload response status:', r.status);
+                
+                if (!r.ok) {
+                    const error = await r.text();
+                    throw new Error(`HTTP ${r.status}: ${error}`);
+                }
+                
+                const data = await r.json();
+                console.log('Analysis result:', data);
+                
+                resultDiv.innerHTML = '<span class="success">Upload successful! Check response below.</span>';
+                responseDiv.textContent = JSON.stringify(data, null, 2);
+                
+            } catch(e) {
+                resultDiv.innerHTML = `<span class="error">Upload Error: ${e.message}</span>`;
+                responseDiv.textContent = e.message;
+                console.error('Upload failed:', e);
+            }
+        }
+        
+        // Auto-test on page load
+        window.addEventListener('load', () => {
+            console.log('Page loaded - you can now test');
+        });
+    </script>
+</body>
+</html>

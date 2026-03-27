@@ -1,0 +1,10 @@
+flask
+flask-cors
+PyPDF2
+python-docx
+pdfplumber
+requests
+
+# OCR support (alternative to tesseract)
+easyocr
+pdf2image
